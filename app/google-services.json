@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "809971727083",
+    "project_id": "tkstudy-c781e",
+    "storage_bucket": "tkstudy-c781e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809971727083:android:9b9e155c31b45f6d1b5cae",
+        "android_client_info": {
+          "package_name": "com.example.mystudy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCknxpGCoHmG36CP1reg5Hg2kHWjwvBwvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
