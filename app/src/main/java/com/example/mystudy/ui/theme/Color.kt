@@ -11,5 +11,12 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 // Colors for Todo states
-val TodoCompletedColor = Color(0xFEA2A2A2) // Green for completed
-val TodoIncompleteColor = Color(0xFFFFFFFF)
+val TodoCompletedColor = Color(0xFF0D1321) // Green for completed
+val TodoIncompleteColor = Color(0xFF008DFF)
+
+
+val PrimaruBlue = Color(0XFF0C2D66)
+val SecondaryBlue = Color(0XFF11203B)
+val Gradiant = Color(0XFF173876)
+val ShadeBlue = Color(0XFF2B3F62)
+val GrayBlue = Color(0XFF586C90)

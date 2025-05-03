@@ -1,5 +1,7 @@
 package com.example.mystudy.ui.feature.addedit
 
+import RadialGradientScaffold
+import android.graphics.drawable.GradientDrawable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -76,7 +78,7 @@ fun AddEditContent(
     onEvent: (AddEditEvent) -> Unit = {},
     snackbarHostState: SnackbarHostState
 ) {
-    Scaffold(floatingActionButton = {
+    RadialGradientScaffold(floatingActionButton = {
         FloatingActionButton(onClick = {
             onEvent(AddEditEvent.Save)
         }) {

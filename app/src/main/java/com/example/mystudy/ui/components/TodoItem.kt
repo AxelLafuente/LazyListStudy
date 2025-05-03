@@ -19,6 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +45,9 @@ fun TodoItem(
     }
     Surface(
         onClick = onItemClick,
-        modifier = modifier,
+        modifier = modifier
+            .shadow(elevation = 4.dp, shape = MaterialTheme.shapes.medium)
+            .alpha(0.8f),
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 3.dp,
         border = BorderStroke(
