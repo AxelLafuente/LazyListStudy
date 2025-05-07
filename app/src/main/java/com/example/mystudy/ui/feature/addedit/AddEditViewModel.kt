@@ -58,7 +58,7 @@ class AddEditViewModel(
                 _uiEvent.send(UiEvent.ShowSnackbar("Title can't be empty"))
                 return@launch
             }
-            repository.insert(title, description, id)
+            repository.insert(title, description, id , false, 0,"" , null, 0, false)
             _uiEvent.send(UiEvent.NavigateBack)
         }
 

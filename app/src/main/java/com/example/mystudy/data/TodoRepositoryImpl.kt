@@ -10,7 +10,7 @@ class TodoRepositoryImpl(
     private val dao: TodoDao
 ) : TodoRepository {
 
-    override suspend fun insert(title: String, description: String?, id: Long?) {
+    override suspend fun insert(title: String, description: String?, id: Long?, isCompleted: Boolean, type: Int, startDate: String, endDate: String?, priority: Int, isCanceled: Boolean) {
         withContext(Dispatchers.IO) {
             val entity = id?.let {
                 dao.getById(it)?.copy(
@@ -20,16 +20,21 @@ class TodoRepositoryImpl(
             } ?: TodoEntity(
                 title = title,
                 description = description,
-                isCompleted = false
+                isCompleted = false,
+                type = type,
+                startDate = startDate,
+                endDate = endDate,
+                priority = priority,
+                isCanceled = isCanceled
             )
             dao.insert(entity)
         }
     }
 
-    override suspend fun updateCompleted(id: Long, isCompleted: Boolean) {
+    override suspend fun updateCompleted(id: Long, isCompleted: Boolean, endDate: String) {
         withContext(Dispatchers.IO) {
             val existingEntity = dao.getById(id) ?: return@withContext
-            val updatedEntity = existingEntity.copy(isCompleted = isCompleted)
+            val updatedEntity = existingEntity.copy(isCompleted = isCompleted, endDate = endDate)
             if (isCompleted == true) {
                 dao.insert(updatedEntity)
             }
@@ -51,7 +56,12 @@ class TodoRepositoryImpl(
                     id = entity.id,
                     title = entity.title,
                     description = entity.description,
-                    isCompleted = entity.isCompleted
+                    isCompleted = entity.isCompleted,
+                    type = entity.type,
+                    startDate = entity.startDate,
+                    endDate = entity.endDate,
+                    priority = entity.priority,
+                    isCanceled = entity.isCanceled
                 )
             }
         }
@@ -64,7 +74,12 @@ class TodoRepositoryImpl(
                     id = entity.id,
                     title = entity.title,
                     description = entity.description,
-                    isCompleted = entity.isCompleted
+                    isCompleted = entity.isCompleted,
+                    type = entity.type,
+                    startDate = entity.startDate,
+                    endDate = entity.endDate,
+                    priority = entity.priority,
+                    isCanceled = entity.isCanceled
                 )
             }
         }

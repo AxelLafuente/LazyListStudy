@@ -9,5 +9,10 @@ data class TodoEntity (
     @PrimaryKey(autoGenerate = true) val id : Long = 0,
     val title : String,
     val description : String?,
-    val isCompleted : Boolean
+    val isCompleted : Boolean,
+    val type : Int ,
+    val startDate : String,
+    val endDate : String?,
+    val priority : Int ,
+    val isCanceled : Boolean
 )

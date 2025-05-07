@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ListViewModel(
     private val repository: TodoRepository
@@ -49,8 +51,13 @@ class ListViewModel(
 
     private fun complete(id: Long, completed: Boolean) {
         viewModelScope.launch {
-            repository.updateCompleted(id, completed)
+
+            repository.updateCompleted(id, completed, getDate())
         }
+    }
+
+    private fun getDate(): String {
+        return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
     }
 
 

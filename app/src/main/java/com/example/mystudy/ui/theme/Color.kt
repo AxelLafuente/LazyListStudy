@@ -20,3 +20,10 @@ val SecondaryBlue = Color(0XFF11203B)
 val Gradiant = Color(0XFF173876)
 val ShadeBlue = Color(0XFF2B3F62)
 val GrayBlue = Color(0XFF586C90)
+
+
+val UnfocusedText = Color(0xFF939393)
+val GrayText = Color(0xFFD9D9D9)
+val White = Color(0xFFFFFFFF)
+val Black = Color(0xFF000000)
+

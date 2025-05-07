@@ -29,6 +29,7 @@ import com.example.mystudy.domain.todo2
 import com.example.mystudy.ui.theme.MyStudyTheme
 import com.example.mystudy.ui.theme.TodoCompletedColor
 import com.example.mystudy.ui.theme.TodoIncompleteColor
+import com.example.mystudy.ui.theme.White
 
 @Composable
 fun TodoItem(
@@ -47,7 +48,7 @@ fun TodoItem(
         onClick = onItemClick,
         modifier = modifier
             .shadow(elevation = 4.dp, shape = MaterialTheme.shapes.medium)
-            .alpha(0.8f),
+            .alpha(0.6f),
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 3.dp,
         border = BorderStroke(
@@ -66,16 +67,27 @@ fun TodoItem(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = todo.title, style = MaterialTheme.typography.titleMedium,
+                    color = White,
                     textDecoration = if (todo.isCompleted) {TextDecoration.LineThrough} else {TextDecoration.None})
 
                 Spacer(Modifier.height(4.dp))
 
+                todo.endDate?.let{
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = White
+                    )
+                }
                 todo.description?.let {
                     Text(
                         text = it,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = White
+
                     )
                 }
+
             }
             Spacer(Modifier.width(8.dp))
 

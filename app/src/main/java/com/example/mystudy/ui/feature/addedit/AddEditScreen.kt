@@ -28,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mystudy.data.TodoDatabaseProvider
 import com.example.mystudy.data.TodoRepositoryImpl
 import com.example.mystudy.ui.UiEvent
+import com.example.mystudy.ui.components.CustomTextField
 import com.example.mystudy.ui.theme.MyStudyTheme
 
 @Composable
@@ -94,27 +95,23 @@ fun AddEditContent(
                 .consumeWindowInsets(it)
                 .padding(16.dp)
         ) {
-            OutlinedTextField(
+            CustomTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = title,
                 onValueChange = {
                     onEvent(AddEditEvent.TitleChanged(it))
                 },
-                placeholder = {
-                    Text(text = "Title*")
-                })
+                placeholder = "Title*")
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            CustomTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = description ?: "",
                 onValueChange = { onEvent(AddEditEvent.DescriptionChanged(it)) },
-                placeholder = {
-                    Text(text = "Desc")
-                })
+                placeholder = "Desc")
 
         }
 
