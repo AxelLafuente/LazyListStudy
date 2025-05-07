@@ -4,4 +4,5 @@ sealed interface AddEditEvent {
     data class TitleChanged(val title: String) : AddEditEvent
     data class DescriptionChanged(val description: String) : AddEditEvent
     data object Save : AddEditEvent
+    data class TypeChanged(val type: String) : AddEditEvent
 }

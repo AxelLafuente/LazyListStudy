@@ -21,6 +21,9 @@ class AddEditViewModel(
     var description by mutableStateOf("")
         private set
 
+    var type by mutableStateOf("")
+        private set
+
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent  = _uiEvent.receiveAsFlow()
@@ -48,6 +51,9 @@ class AddEditViewModel(
 
             AddEditEvent.Save -> {
                 saveTodo()
+            }
+            is AddEditEvent.TypeChanged -> {
+                type = event.type
             }
         }
     }

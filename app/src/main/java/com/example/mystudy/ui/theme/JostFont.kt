@@ -14,7 +14,7 @@ val Jost = FontFamily(
     Font(R.font.jost_light, FontWeight.Light),
     Font(R.font.jost_lightitalic, FontWeight.Light, FontStyle.Italic),
     Font(R.font.jost_regular, FontWeight.Normal),
-    Font(R.font.jost_thin, FontWeight.Normal, FontStyle.Italic),
+    Font(R.font.jost_italic, FontWeight.Normal, FontStyle.Italic),
     Font(R.font.jost_medium, FontWeight.Medium),
     Font(R.font.jost_mediumitalic, FontWeight.Medium, FontStyle.Italic),
     Font(R.font.jost_semibold, FontWeight.SemiBold),

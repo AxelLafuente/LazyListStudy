@@ -27,9 +27,11 @@ import androidx.compose.ui.unit.dp
 import com.example.mystudy.domain.Todo
 import com.example.mystudy.domain.todo2
 import com.example.mystudy.ui.theme.MyStudyTheme
+import com.example.mystudy.ui.theme.SecondaryBlue
 import com.example.mystudy.ui.theme.TodoCompletedColor
 import com.example.mystudy.ui.theme.TodoIncompleteColor
 import com.example.mystudy.ui.theme.White
+import com.example.mystudy.ui.theme.WhiteTranslucident
 
 @Composable
 fun TodoItem(
@@ -40,9 +42,9 @@ fun TodoItem(
     todo: Todo,
 ) {
     val backgroundColor = if (todo.isCompleted) {
-        TodoCompletedColor
+        SecondaryBlue
     } else {
-        TodoIncompleteColor
+        WhiteTranslucident
     }
     Surface(
         onClick = onItemClick,

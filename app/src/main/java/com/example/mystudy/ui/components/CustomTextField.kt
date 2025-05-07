@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -37,12 +36,14 @@ fun CustomTextField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text(text = placeholder, style = TextStyle(
-            fontFamily = Jost,
-            fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
-        )
-        )
+        placeholder = {
+            Text(
+                text = placeholder, style = TextStyle(
+                    fontFamily = Jost,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+            )
         },
         singleLine = true,
         visualTransformation = textFieldTransformation,
@@ -50,8 +51,8 @@ fun CustomTextField(
             .fillMaxWidth()
             .height(60.dp)
             .padding(vertical = 4.dp)
-            .shadow( 6.dp, RoundedCornerShape(8.dp))
-            .alpha(0.6f),
+            .shadow(6.dp, RoundedCornerShape(8.dp))
+            .alpha(0.8f),
         shape = RoundedCornerShape(8.dp),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = White,
@@ -72,12 +73,14 @@ fun CustomTextField(
 }
 
 
-
 @Preview
 @Composable
 private fun CustomTextFieldPreview() {
-    CustomTextField(
-        value = "",
-        onValueChange = {},
-        placeholder = "Input")
+    MyStudyTheme {
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            placeholder = "Input"
+        )
+    }
 }

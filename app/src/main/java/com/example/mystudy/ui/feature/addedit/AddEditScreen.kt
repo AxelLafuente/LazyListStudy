@@ -2,6 +2,8 @@ package com.example.mystudy.ui.feature.addedit
 
 import RadialGradientScaffold
 import android.graphics.drawable.GradientDrawable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -10,9 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -20,7 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,7 +37,11 @@ import com.example.mystudy.data.TodoDatabaseProvider
 import com.example.mystudy.data.TodoRepositoryImpl
 import com.example.mystudy.ui.UiEvent
 import com.example.mystudy.ui.components.CustomTextField
+import com.example.mystudy.ui.components.RadioButtonSingleSelection
+import com.example.mystudy.ui.theme.Jost
 import com.example.mystudy.ui.theme.MyStudyTheme
+import com.example.mystudy.ui.theme.ShadeBlue
+import com.example.mystudy.ui.theme.White
 
 @Composable
 fun AddEditScreen(
@@ -44,11 +56,13 @@ fun AddEditScreen(
     {
         AddEditViewModel(
             repository = repository,
-            id = id)
+            id = id
+        )
     }
 
     val title = viewModel.title
     val description = viewModel.description
+    val type = viewModel.type
 
     val snackbarHostState = remember {
         SnackbarHostState()
@@ -68,7 +82,7 @@ fun AddEditScreen(
         }
     }
 
-    AddEditContent(title, description, viewModel::onEvent, snackbarHostState)
+    AddEditContent(title, description, viewModel::onEvent, snackbarHostState, type)
 }
 
 
@@ -77,7 +91,8 @@ fun AddEditContent(
     title: String,
     description: String?,
     onEvent: (AddEditEvent) -> Unit = {},
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    type: String
 ) {
     RadialGradientScaffold(floatingActionButton = {
         FloatingActionButton(onClick = {
@@ -90,29 +105,59 @@ fun AddEditContent(
             SnackbarHost(hostState = snackbarHostState)
         }
     ) {
-        Column(
+        Card(
             modifier = Modifier
-                .consumeWindowInsets(it)
-                .padding(16.dp)
-        ) {
-            CustomTextField(
+                .padding(24.dp)
+                .shadow(6.dp),
+            colors = CardColors(
+                containerColor = ShadeBlue,
+                contentColor = ShadeBlue,
+                disabledContainerColor = ShadeBlue,
+                disabledContentColor = ShadeBlue
+            ),
+        )
+        {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                value = title,
-                onValueChange = {
-                    onEvent(AddEditEvent.TitleChanged(it))
-                },
-                placeholder = "Title*")
+                    .consumeWindowInsets(it)
+                    .padding(16.dp)
+            ) {
+                CustomTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = title,
+                    onValueChange = {
+                        onEvent(AddEditEvent.TitleChanged(it))
+                    },
+                    placeholder = "Title*"
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            CustomTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = description ?: "",
-                onValueChange = { onEvent(AddEditEvent.DescriptionChanged(it)) },
-                placeholder = "Desc")
+                CustomTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = description ?: "",
+                    onValueChange = { onEvent(AddEditEvent.DescriptionChanged(it)) },
+                    placeholder = "Desc"
+                )
+                Spacer(modifier = Modifier.height(16.dp))
 
+                Text(text = "Choise type of todo"
+                    , modifier = Modifier.align(Alignment.CenterHorizontally),
+                    color = White,
+                    fontFamily = Jost,)
+
+                RadioButtonSingleSelection(
+                    selectedOption = type,
+                    onOptionSelected = { onEvent(AddEditEvent.TypeChanged(it)) }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+
+
+            }
         }
 
     }
@@ -124,7 +169,7 @@ fun AddEditContent(
 @Composable
 private fun AddEditContentPreview() {
     MyStudyTheme {
-        AddEditContent("", null, {}, snackbarHostState = SnackbarHostState())
+        AddEditContent("", null, {}, snackbarHostState = SnackbarHostState(), "Diaria")
     }
 
 }
