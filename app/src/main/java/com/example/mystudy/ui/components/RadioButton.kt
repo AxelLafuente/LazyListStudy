@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mystudy.ui.theme.Jost
 import com.example.mystudy.ui.theme.MyStudyTheme
+import com.example.mystudy.ui.theme.TextBlack
 import com.example.mystudy.ui.theme.White
 
 @Composable
@@ -55,7 +56,7 @@ fun RadioButtonSingleSelection(
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = text,
-                    color = White,
+                    color = TextBlack,
                     fontFamily = Jost,
                 )
             }

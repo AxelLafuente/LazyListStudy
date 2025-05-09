@@ -28,3 +28,12 @@ val White = Color(0xFFFFFFFF)
 val WhiteTranslucident = Color(0x99FFFFFF)
 val Black = Color(0xFF000000)
 
+//paleta minimalista para cores temporarias
+val WhiteBackground = Color(0xFFF8F9FA)
+val WhiteGrey = Color(0XFFE9ECEF)
+val WhiteDisabled = Color(0XFF495057)
+val TextBlack = Color(0xFF212529)
+val WhiteItem= Color(0xFFDEE2E6)
+val ItemBorder = Color(0xFF495057)
+
+

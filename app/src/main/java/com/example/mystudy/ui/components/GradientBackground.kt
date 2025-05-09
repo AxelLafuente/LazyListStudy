@@ -1,3 +1,4 @@
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -13,6 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.mystudy.ui.theme.PrimaruBlue
 import com.example.mystudy.ui.theme.SecondaryBlue
+import com.example.mystudy.ui.theme.TextBlack
+import com.example.mystudy.ui.theme.WhiteBackground
 
 @Composable
 fun RadialGradientScaffold(
@@ -52,9 +55,7 @@ fun RadialGradientScaffold(
             modifier = modifier
                 .fillMaxSize()
                 .onSizeChanged { size = it }
-                .drawBehind {
-                    gradient?.let { drawRect(it) }
-                }
+                .background(WhiteBackground)
                 .padding(paddingValues)
         ) {
             content(paddingValues)
@@ -70,7 +71,7 @@ fun PreviewRadialGradientScaffold() {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Preview da Tela", color = Color.White, fontSize = 24.sp)
+            Text("Preview da Tela", color = TextBlack, fontSize = 24.sp)
         }
     }
 }

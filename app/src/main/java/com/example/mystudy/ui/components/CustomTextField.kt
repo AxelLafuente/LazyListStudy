@@ -51,7 +51,6 @@ fun CustomTextField(
             .fillMaxWidth()
             .height(60.dp)
             .padding(vertical = 4.dp)
-            .shadow(6.dp, RoundedCornerShape(8.dp))
             .alpha(0.8f),
         shape = RoundedCornerShape(8.dp),
         colors = OutlinedTextFieldDefaults.colors(

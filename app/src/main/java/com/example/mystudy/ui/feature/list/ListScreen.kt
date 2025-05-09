@@ -1,13 +1,8 @@
 package com.example.mystudy.ui.feature.list
 
 import RadialGradientScaffold
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,20 +11,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mystudy.data.TodoDatabaseProvider
 import com.example.mystudy.data.TodoRepositoryImpl
@@ -40,7 +35,10 @@ import com.example.mystudy.domain.todo3
 import com.example.mystudy.navigation.AddEditRoute
 import com.example.mystudy.ui.UiEvent
 import com.example.mystudy.ui.components.TodoItem
+import com.example.mystudy.ui.theme.Jost
 import com.example.mystudy.ui.theme.MyStudyTheme
+import com.example.mystudy.ui.theme.TextBlack
+import com.example.mystudy.ui.theme.White
 
 @Composable
 fun ListScreen(
@@ -60,9 +58,9 @@ fun ListScreen(
 
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { uiEvent ->
-            when(uiEvent){
+            when (uiEvent) {
                 is UiEvent.Navigate<*> -> {
-                    when(uiEvent.route){
+                    when (uiEvent.route) {
                         is AddEditRoute -> {
                             navigateToAddEditScreen(uiEvent.route.id)
                         }
@@ -97,11 +95,26 @@ fun ListContent(
     }
     )
     {
+        Spacer(modifier = Modifier.height(10.dp))
+
         LazyColumn(
-            modifier = Modifier
-                .consumeWindowInsets(it),
-            contentPadding = PaddingValues(16.dp)
+            modifier = Modifier,
+            contentPadding = PaddingValues(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            item{
+                Text(
+                    modifier = Modifier.padding(vertical = 24.dp),
+                    text = "Lista de tarefas de hoje",
+                    style = TextStyle(
+                        fontFamily = Jost,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 24.sp,
+                        color = TextBlack
+                    ),
+                    textDecoration = TextDecoration.Underline
+                )
+            }
             itemsIndexed(todos) { index, todo ->
                 TodoItem(todo = todo,
                     onCompletedChange = {
